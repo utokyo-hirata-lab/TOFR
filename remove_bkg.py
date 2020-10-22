@@ -1,3 +1,6 @@
+# ナノ粒子計測時、バックグラウンド＋溶存成分の平均信号強度を見積もって、減算するよ（粒子本来の信号強度を推定するため）
+# マイナス値は0で出力されるよ
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tic
@@ -5,14 +8,13 @@ from matplotlib import rcParams
 import numpy as np
 import pathlib
 
-mode = "blank"  # "calc" = estimate blank+ionic, "blank" = subtract blank
+mode = "calc"  # "calc" = estimate blank+ionic, "blank" = subtract blank
 
-sample = "bir1g_2ms"
-blank = "MQ_bir1g"
-label1 = ["_1","_2","_3"]
-label2 = "_bl"  # "" for > 0, "_0" for >= 0, # "_bl" for baseline-only
+sample = "sample"  # type X for "X_Y.csv"
+blank = "blank"  # type X for "X_Y.csv"
+label1 = ["_1","_2","_3"]  # type _Y for "X_Y.csv"
+label2 = "_bl"  # "" for > 0 signals, "_0" for >= 0 signals, "_bl" for >= 0 signals & ionic subtraction only
 
-#datasheet_blank = "MQ.csv"
 
 # threshold level (baseline calc)
 n = 3
